@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTINENTAL - RECORDATORIO DE INICIO DE CLASES</title>
+
+    <style>
+        tr {
+            border-bottom: 1px solid #000;
+        }
+
+        td,
+        th {
+            padding: 0.5em 0;
+        }
+    </style>
+</head>
+
+<body style="margin: 0 auto; font: 14px Helvetica;">
+
+    <div style="background-color: #bf8f00; color: #fff; padding: .5rem;">
+        Recordatorio
+    </div>
+
+    <div
+        style="background-color: #fff; color: #bf8f00; padding: .5rem; font-size: 2rem; font-weight: bold; text-align: center;">
+        <%= studentInfo.schoolName %>
+            <%= studentInfo.schoolModality %>
+    </div>
+
+    <div style="background-color: #bf8f00; color: #fff; padding: .5rem;">
+        <table style="width: 100%; border-collapse: collapse; text-align: center; table-layout: fixed;">
+            <tr style="border: 0;">
+                <td>
+                    Ciclo: <%= studentInfo.cycle %>
+                </td>
+                <td>
+                    Seccion: <%= studentInfo.section %>
+                </td>
+                <td>
+                    Inicio: <%= studentInfo.startDate %>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="text-align: center; margin: 1rem 0 1.5rem 0;">
+        <strong>
+            Docente:
+        </strong>
+        <%= studentInfo.teacherLastname %>, <%= studentInfo.teacherName %>
+    </div>
+
+    <table cellpadding="2" style="width: 100%; border-collapse: collapse; table-layout: fixed;">
+        <tr>
+            <th>Domingo</th>
+            <th>Lunes</th>
+            <th>Martes</th>
+            <th>Miércoles</th>
+            <th>Jueves</th>
+            <th>Viernes</th>
+            <th>Sábado</th>
+        </tr>
+        <tr style="text-align: center;">
+            <td>
+                <%= studentInfo.DOM %>
+            </td>
+            <td>
+                <%= studentInfo.LUN %>
+            </td>
+            <td>
+                <%= studentInfo.MAR %>
+            </td>
+            <td>
+                <%= studentInfo.MIE %>
+            </td>
+            <td>
+                <%= studentInfo.JUE %>
+            </td>
+            <td>
+                <%= studentInfo.VIE %>
+            </td>
+            <td>
+                <%= studentInfo.SAB %>
+            </td>
+        </tr>
+    </table>
+
+    <div style="text-align: center; margin: 1.5rem 0 1rem 0;">
+        Solicita tu retiro aquí:
+        <br>
+        Correo: <a href="mailto:jamaya@continental.edu.pe">
+            jamaya@continental.edu.pe
+        </a>
+        <br>
+        Hasta: <%= studentInfo.cancelDate %>
+    </div>
+
+    <div style="background-color: #fff; color: #bf8f00; font-size: 1.5rem; text-align: center; margin-bottom: 1rem;">
+        ¡El link de la clase es enviado por su docente!
+    </div>
+
+    <div style="background-color: #000; color: gold; padding: .5rem; font-size: 1.5rem; text-align: center;">
+        INFORMACIÓN ECONÓMICA
+    </div>
+
+    <table style="width: 100%; border-collapse: collapse; table-layout: fixed; text-align: center;">
+        <tr style="border-top: 1px solid #000;">
+            <td colspan="2">
+                <strong style="color: #FF0000; font-size: 1.1rem;">
+                    Vencimiento del pago: <%= studentInfo.paymentExpirationDate %>
+                </strong>
+            </td>
+        </tr>
+
+        <% paymentInfo.forEach(function(payment) { %>
+
+            <tr>
+                <td>
+                    <%= payment.paymentDescription %>
+                </td>
+                <td>
+                    <%= payment.paymentCharge %>
+                </td>
+            </tr>
+
+            <% }) %>
+
+                <tr>
+                    <td>
+                        <i>
+                            Recuerda: "Cada tasa impaga oportunamente devengará un interés moratorio que no podrá
+                            superar la
+                            tasa de interés interbancaria dispuesta por el Banco central de reserva del Perú, así como
+                            la
+                            obligación del pago del concepto de gastos administrativos (S/. 25.00)"
+                        </i>
+                    </td>
+                    <td>
+                        <i style="color: #FF0000;">
+                            <strong>¡EVITA INCURRIR EN MORA!</strong>: Realizando el pago o solicitando prórroga, de la
+                            cuota de
+                            la tasa de enseñanza en la oportunidad señalada
+                        </i>
+                    </td>
+                </tr>
+    </table>
+
+    <div style="background-color: #000; color: gold; padding: .5rem; font-size: 1.5rem; text-align: center;">
+        MEDIOS DE PAGO
+    </div>
+
+    <div style="text-align: center; margin: .5rem 0;">
+        <a href="https://drive.google.com/file/d/1Tz7n8CpEGFXWiSIXe02x1Wb8a5JExJjQ/view" target="_blank">
+            ¿Cómo realizar el pago?
+        </a>
+    </div>
+
+    <table
+        style="width: 100%; border-collapse: separate; table-layout: fixed; text-align: center; border-spacing: .5rem;">
+        <tr>
+            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000;">
+                BANCO CONTINENTAL
+                <span style="color: #bf8f00">
+                    (Sin comisión)
+                </span>
+            </td>
+            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000;">
+                BANCO SCOTIABANK
+                <span style="color: #bf8f00">
+                    (Sin comisión)
+                </span>
+            </td>
+            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000;">
+                BANCO BANBIF
+                <span style="color: #bf8f00">
+                    (Sin comisión)
+                </span>
+            </td>
+            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000;">
+                BANCO INTERBANK
+                <span style="color: #bf8f00">
+                    (Sin comisión)
+                </span>
+            </td>
+            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000;">
+                BANCO BCP
+                <span style="color: #bf8f00">
+                    (Comisión en ventanilla S/6.50 / Sin comisión por medios digitales)
+                </span>
+            </td>
+            <td style="border-top: 1px solid #000; border-bottom: 1px solid #000;">
+                CAJA CENTRO
+                <span style="color: #bf8f00">
+                    (Sin comisión)
+                </span>
+            </td>
+        </tr>
+    </table>
+
+    <div style="background-color: #000; color: gold; padding: .5rem; text-align: center;">
+        Atención de Lunes a Viernes
+    </div>
+
+    <table style="width: 100%; border-collapse: separate; table-layout: fixed; border-spacing: 2rem 0;">
+        <tr>
+            <td>
+                <div style="font-size: 1.5rem; font-weight: bold;">
+                    Campus Huancayo
+                </div>
+
+                <i style="color: #FF0000;">
+                    (Horario: 09:00 am a 01:00 pm / 03:00 pm a 06:00 pm)
+                </i>
+
+                <a href="mailto:centroidiomasuc@continental.edu.pe">
+                    centroidiomasuc@continental.edu.pe
+                </a>
+
+                <div>
+                    975611146 • 943857627 • 937597165 • 957673497 • 938852831
+                </div>
+
+                <div style="font-weight: bold;">
+                    Oficina virtual:
+                </div>
+
+                <a href="https://meet.google.com/gkh-xhgm-gbq" target="_blank">
+                    https://meet.google.com/gkh-xhgm-gbq
+                </a>
+            </td>
+
+            <td>
+                <div style="font-size: 1.5rem; font-weight: bold;">
+                    Campus Arequipa
+                </div>
+
+                <i style="color: #FF0000;">
+                    (Horario: 09:00 am a 01:00 pm / 03:30 pm a 06:00 pm)
+                </i>
+
+                <a href="mailto:idiomasucaqp@continental.edu.pe">
+                    idiomasucaqp@continental.edu.pe
+                </a>
+
+                <div>
+                    985936883
+                </div>
+
+                <div style="font-weight: bold;">
+                    Oficina virtual:
+                </div>
+
+                <a href="https://meet.google.com/avi-xtav-jzb" target="_blank">
+                    https://meet.google.com/avi-xtav-jzb
+                </a>
+
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div style="font-size: 1.5rem; font-weight: bold;">
+                    Campus Lima
+                </div>
+
+                <i style="color: #FF0000;">
+                    (Horario: 09:00 am a 01:00 pm / 03:30 pm a 06:00 pm)
+                </i>
+
+                <a href="mailto:idiomasuclima@continental.edu.pe">
+                    idiomasuclima@continental.edu.pe
+                </a>
+
+                <div>
+                    01 2132760 - Anexo 6122
+                </div>
+
+                <div style="font-weight: bold;">
+                    Oficina virtual:
+                </div>
+
+                <a href="https://meet.google.com/xtp-rtcm-uqv" target="_blank">
+                    https://meet.google.com/xtp-rtcm-uqv
+                </a>
+
+            </td>
+
+            <td>
+                <div style="font-size: 1.5rem; font-weight: bold;">
+                    Campus Cusco
+                </div>
+
+                <i style="color: #FF0000;">
+                    (Horario: 09:00 am a 01:00 pm / 03:30 pm a 06:00 pm)
+                </i>
+
+                <a href="mailto:idiomasuccusco@continental.edu.pe">
+                    idiomasuccusco@continental.edu.pe
+                </a>
+
+                <div>
+                    945645082 • 084 480070 - Anexo 7088
+                </div>
+
+                <div style="font-weight: bold;">
+                    Oficina virtual:
+                </div>
+
+                <a href="https://meet.google.com/jtd-mgme-nbv" target="_blank">
+                    https://meet.google.com/jtd-mgme-nbv
+                </a>
+            </td>
+        </tr>
+
+    </table>
+
+    <div style="background-color: #A81CA8; color: #fff; padding: 1rem; font-size: 1.1rem;">
+        <div style="font-size: 1.5rem; font-weight: bold;">
+            Canales de procesos:
+        </div>
+        Matriculas • reincorporaciones • exámenes de clasificación • suficiencia • convalidaciones •
+        informes de horarios y fechas de inicio • cambios de horarios y modalidad • tramites.
+    </div>
+
+</body>
+
+</html>
