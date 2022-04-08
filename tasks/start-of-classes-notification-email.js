@@ -117,8 +117,6 @@ async function startOfClassesNotificationEmail(charCodesOfSection, daysAdd) {
                 }
 
                 Logger.writeLog('startOfClassesNotificationEmail', error, Logger.Severity.Error);
-            } finally {
-                break;
             }
         }
     } catch (error) {

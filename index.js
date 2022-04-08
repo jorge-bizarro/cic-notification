@@ -4,7 +4,7 @@ const { createCron } = require('./helpers/cron');
 const { startOfClassesNotificationEmail } = require('./tasks/start-of-classes-notification-email');
 
 [{
-    schedule: '0 * 11 * * *',
+    schedule: '0 30 17 * * *',
     scheduled: true,
     process: startOfClassesNotificationEmail,
     args: [['I', 'S'], 1],
