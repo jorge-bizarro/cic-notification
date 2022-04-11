@@ -19,6 +19,4 @@ const { startOfClassesNotificationEmail } = require('./tasks/start-of-classes-no
     process: startOfClassesNotificationEmail,
     args: [['R'], 3],
 }]
-    .forEach(task => Object.assign(task, {
-        cron: createCron(task)
-    }))
+    .forEach(createCron)
