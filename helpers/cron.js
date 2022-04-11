@@ -1,7 +1,7 @@
 // @ts-check
 
 const nodeCron = require('node-cron');
-const { NODE_ENV } = require('../config/config')
+const { CRON_START } = require('../config/config')
 
 /**
  * Creación del cron
@@ -20,7 +20,7 @@ function createCron({ schedule, scheduled, process, args }) {
         this['is_running'] = true;
         process(...args).then(_ => this['is_running'] = false);
     }, {
-        scheduled: NODE_ENV === 'production' ? scheduled : false,
+        scheduled: CRON_START === 'true' ? scheduled : false,
         timezone: 'America/Lima'
     });
 }

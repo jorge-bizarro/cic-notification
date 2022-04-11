@@ -13,6 +13,7 @@ const {
     DB_PORT,
     API_SEND_MAIL_URL,
     API_SEND_MAIL_ACCESS_TOKEN,
+    CRON_START,
 } = process.env;
 
 module.exports = {
@@ -26,4 +27,5 @@ module.exports = {
     DB_PORT,
     API_SEND_MAIL_URL,
     API_SEND_MAIL_ACCESS_TOKEN,
+    CRON_START,
 }
