@@ -45,9 +45,9 @@ async function startOfClassesNotificationEmail(charCodesOfSection, daysAdd) {
         const jsonDataToSendList = studentIdList.map(studentId => {
             const info = dataNotification.filter(x => x.studentId === studentId);
             const studentInfo = info.map(({
-                studentId, studentLastname, studentName, teacherLastname, teacherName, startDate, cancelDate, paymentExpirationDate, period, schoolName, schoolModality, section, cycle, LUN, MAR, MIE, JUE, VIE, SAB, DOM,
+                studentId, studentEmail, studentLastname, studentName, teacherLastname, teacherName, startDate, cancelDate, paymentExpirationDate, period, schoolName, schoolModality, section, cycle, LUN, MAR, MIE, JUE, VIE, SAB, DOM,
             }) => ({
-                studentId, studentLastname, studentName, teacherLastname, teacherName, startDate, cancelDate, paymentExpirationDate, period, schoolName, schoolModality, section, cycle, LUN, MAR, MIE, JUE, VIE, SAB, DOM,
+                studentId, studentEmail, studentLastname, studentName, teacherLastname, teacherName, startDate, cancelDate, paymentExpirationDate, period, schoolName, schoolModality, section, cycle, LUN, MAR, MIE, JUE, VIE, SAB, DOM,
             }))[0];
             const paymentInfo = info.map(({
                 paymentDescription, paymentCharge
@@ -62,7 +62,7 @@ async function startOfClassesNotificationEmail(charCodesOfSection, daysAdd) {
 
             return {
                 from: 'Notificaciones - Centro de Idiomas',
-                to: [`${String(studentInfo.studentId).toLowerCase()}@continental.edu.pe`],
+                to: [`${String(studentInfo.studentEmail).toLowerCase()}`],
                 subject: `Recordatorio de inicio de ciclo ${studentInfo.cycle}° - ${studentInfo.schoolName} - ${studentInfo.schoolModality}`.toUpperCase(),
                 body: templateHtml,
                 files: [],
