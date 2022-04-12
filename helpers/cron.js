@@ -15,7 +15,7 @@ function createCron({ schedule, scheduled, process, args }) {
     if (!nodeCron.validate(schedule))
         throw new Error('Invalid schedule format')
 
-    console.log(`processName: ${process.name} ${canScheduled ? '' : 'not '}scheduled`);
+    console.log(`processName: ${process.name} ${canScheduled() ? '' : 'not '}scheduled`);
 
     return nodeCron.schedule(schedule, _ => {
         if (this['is_running'])
@@ -24,7 +24,7 @@ function createCron({ schedule, scheduled, process, args }) {
         this['is_running'] = true;
         process(...args).then(() => this['is_running'] = false);
     }, {
-        scheduled: canScheduled ? scheduled : false,
+        scheduled: canScheduled() ? scheduled : false,
         timezone: 'America/Lima'
     });
 }
