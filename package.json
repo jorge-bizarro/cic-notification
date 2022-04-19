@@ -14,8 +14,10 @@
         "axios": "^0.26.1",
         "dotenv": "^16.0.0",
         "ejs": "^3.1.6",
+        "exceljs": "^3.8.0",
         "mssql": "^6.2.0",
-        "node-cron": "^2.0.3"
+        "node-cron": "^2.0.3",
+        "nodemailer": "^6.7.3"
     },
     "devDependencies": {
         "nodemon": "^2.0.15"

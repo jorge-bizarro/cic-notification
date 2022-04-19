@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CONTINENTAL - RECORDATORIO DE INICIO DE CLASES</title>
+    <title>CIC</title>
 
     <style>
         tr {
@@ -66,25 +66,25 @@
         </tr>
         <tr style="text-align: center;">
             <td>
-                <%= studentInfo.DOM %>
+                <%= studentInfo.DOM || '---' %>
             </td>
             <td>
-                <%= studentInfo.LUN %>
+                <%= studentInfo.LUN || '---' %>
             </td>
             <td>
-                <%= studentInfo.MAR %>
+                <%= studentInfo.MAR || '---' %>
             </td>
             <td>
-                <%= studentInfo.MIE %>
+                <%= studentInfo.MIE || '---' %>
             </td>
             <td>
-                <%= studentInfo.JUE %>
+                <%= studentInfo.JUE || '---' %>
             </td>
             <td>
-                <%= studentInfo.VIE %>
+                <%= studentInfo.VIE || '---' %>
             </td>
             <td>
-                <%= studentInfo.SAB %>
+                <%= studentInfo.SAB || '---' %>
             </td>
         </tr>
     </table>

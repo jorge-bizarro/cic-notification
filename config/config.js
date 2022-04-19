@@ -3,29 +3,33 @@
 require('dotenv').config();
 
 const {
-    EMAIL_DEV,
-    EMAIL_CC,
     NODE_ENV,
     DB_NAME,
     DB_USER,
     DB_PASSWORD,
     DB_HOST,
     DB_PORT,
-    API_SEND_MAIL_URL,
-    API_SEND_MAIL_ACCESS_TOKEN,
-    CRON_START,
+    MAIL_ACCOUNT,
+    MAIL_CLIENT_ID,
+    MAIL_SECRET_KEY,
+    MAIL_REFRESH_TOKEN,
+    MAIL_DEV,
+    MAIL_CC1,
+    MAIL_CC2,
 } = process.env;
 
 module.exports = {
-    EMAIL_DEV,
-    EMAIL_CC,
     NODE_ENV,
     DB_NAME,
     DB_USER,
     DB_PASSWORD,
     DB_HOST,
     DB_PORT,
-    API_SEND_MAIL_URL,
-    API_SEND_MAIL_ACCESS_TOKEN,
-    CRON_START,
+    MAIL_ACCOUNT,
+    MAIL_CLIENT_ID,
+    MAIL_SECRET_KEY,
+    MAIL_REFRESH_TOKEN,
+    MAIL_DEV,
+    MAIL_CC1,
+    MAIL_CC2,
 }

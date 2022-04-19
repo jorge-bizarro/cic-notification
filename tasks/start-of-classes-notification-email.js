@@ -1,15 +1,15 @@
 // @ts-check
 
-const axios = require('axios');
 const path = require('path');
 const fs = require('fs');
 const ejs = require('ejs');
 const mssql = require('mssql');
 const templatePath = path.join(process.cwd(), 'template', 'start-of-classes-notification-email.ejs');
 const templateString = fs.readFileSync(templatePath, 'utf-8').toString();
-const { getConnectionPool } = require('../helpers/db');
-const Logger = require('../helpers/logger');
-const { API_SEND_MAIL_URL, API_SEND_MAIL_ACCESS_TOKEN, EMAIL_DEV, EMAIL_CC } = require('../config/config');
+const { getConnectionPool } = require('../utils/db');
+const Logger = require('../utils/logger');
+const { MAIL_ACCOUNT, MAIL_CC1 } = require('../config/config');
+const { sendMail } = require('../utils/mail');
 
 /**
  * Obtener la data a procesar
@@ -26,7 +26,8 @@ const getData = (pool, daysAdd, sectionChar) => pool.request()
 
 
 /**
- * Envío de correo
+ * Inicio de ciclo para las clases
+ * * Envío de correo a estudiantes
  * 
  * @param {string[]} charCodesOfSection 
  * @param {number} daysAdd 
@@ -42,13 +43,15 @@ async function startOfClassesNotificationEmail(charCodesOfSection, daysAdd) {
         const dataNotification = (await Promise.all(listPromises)).map(x => x.recordset).flat();
         const studentIdList = Array.from(new Set(dataNotification.map(x => x.studentId)));
 
-        const jsonDataToSendList = studentIdList.map(studentId => {
+        for (const studentId of studentIdList) {
             const info = dataNotification.filter(x => x.studentId === studentId);
+
             const studentInfo = info.map(({
                 studentId, studentEmail, studentLastname, studentName, teacherLastname, teacherName, startDate, cancelDate, paymentExpirationDate, period, schoolName, schoolModality, section, cycle, LUN, MAR, MIE, JUE, VIE, SAB, DOM,
             }) => ({
                 studentId, studentEmail, studentLastname, studentName, teacherLastname, teacherName, startDate, cancelDate, paymentExpirationDate, period, schoolName, schoolModality, section, cycle, LUN, MAR, MIE, JUE, VIE, SAB, DOM,
             }))[0];
+
             const paymentInfo = info.map(({
                 paymentDescription, paymentCharge
             }) => ({
@@ -60,67 +63,19 @@ async function startOfClassesNotificationEmail(charCodesOfSection, daysAdd) {
                 paymentInfo,
             })
 
-            return {
-                from: 'Notificaciones - Centro de Idiomas',
-                to: [`${String(studentInfo.studentEmail).toLowerCase()}`],
+            const mailResponse = await sendMail({
+                from: `Centro de Idiomas Continental <${MAIL_ACCOUNT}>`,
+                to: studentInfo.studentEmail,
+                cc: MAIL_CC1,
                 subject: `Recordatorio de inicio de ciclo ${studentInfo.cycle}° - ${studentInfo.schoolName} - ${studentInfo.schoolModality}`.toUpperCase(),
-                body: templateHtml,
-                files: [],
-                replyTo: [],
-                cc: [EMAIL_CC],
-                cco: [],
-                emailDev: EMAIL_DEV,
-            }
-        })
+                html: templateHtml,
+            })
 
-        for (const jsonDataToSend of jsonDataToSendList) {
-            try {
-                const result = await axios.default({
-                    url: `${API_SEND_MAIL_URL}/mail/send`,
-                    method: 'POST',
-                    headers: {
-                        'x-token': API_SEND_MAIL_ACCESS_TOKEN,
-                        'Content-Type': 'application/json'
-                    },
-                    data: jsonDataToSend
-                })
-
-                const resultToJson = {
-                    requestHeaders: result.config.headers,
-                    requestUrl: result.config.url,
-                    requestMethod: result.config.method,
-                    // requestData: result.config.data,
-                    responseStatus: result.status,
-                    responseStatusText: result.statusText,
-                    responseHeaders: result.headers,
-                    responsedata: result.data,
-                }
-
-                Logger.writeLog('startOfClassesNotificationEmail', JSON.stringify(resultToJson, null, '\t'), Logger.Severity.Debug);
-            } catch (error) {
-                if (error.isAxiosError) {
-                    const { response } = error;
-
-                    const errorToJson = {
-                        requestHeaders: response.config.headers,
-                        requestUrl: response.config.url,
-                        requestMethod: response.config.method,
-                        requestData: response.config.data,
-                        responseStatus: response.status,
-                        responseStatusText: response.statusText,
-                        responseHeaders: response.headers,
-                        responsedata: response.data,
-                    };
-
-                    Logger.writeLog('startOfClassesNotificationEmail', JSON.stringify(errorToJson, null, '\t'), Logger.Severity.Error);
-                    continue;
-                }
-
-                Logger.writeLog('startOfClassesNotificationEmail', error, Logger.Severity.Error);
-            }
+            Logger.writeLog('startOfClassesNotificationEmail', JSON.stringify(mailResponse, null, '\t'), Logger.Severity.Info);
         }
+
     } catch (error) {
-        Logger.writeLog('startOfClassesNotificationEmail', error, Logger.Severity.Fatal);
+        Logger.writeLog('startOfClassesNotificationEmail', error, Logger.Severity.Error);
     } finally {
         if (pool && pool.connected) {
             pool.close();

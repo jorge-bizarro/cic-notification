@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIC</title>
+
+    <style>
+        .tbl1 {
+            background-color: #fff;
+            border-spacing: 1rem 0;
+            padding-bottom: 1rem;
+        }
+
+        .tbl1>tbody>tr>td:nth-child(1) {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body style="margin: 0 auto; font: 14px Helvetica;">
+
+    <div style="text-align: center; text-transform: uppercase; font-size: 1.5rem; padding: 1rem 0;">
+        <strong>
+            Programación de curso taller de Inglés
+        </strong>
+    </div>
+
+    <div>
+        <table class="tbl1">
+            <tbody>
+                <tr>
+                    <td>Docente:</td>
+                    <td>
+                        <%= info.teacherFullname %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sección:</td>
+                    <td>
+                        <%= info.section %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ciclo:</td>
+                    <td>
+                        <%= info.cycle %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Fecha de inicio:</td>
+                    <td>
+                        <%= info.startDate %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Fecha de finalización:</td>
+                    <td>
+                        <%= info.endDate %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Examen final:</td>
+                    <td>
+                        <%= info.examDate %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Entrega de notas vía correo electrónico hasta 9:15 am:</td>
+                    <td>
+                        <%= info.deliveryNotesDate %>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table
+            style="width: 100%; border-collapse: separate; table-layout: fixed; text-align: center; border-spacing: 1rem 0;">
+            <thead>
+                <tr>
+                    <th colspan="7">
+                        Horario
+                    </th>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        <hr>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Domingo</td>
+                    <td>Lunes</td>
+                    <td>Martes</td>
+                    <td>Miércoles</td>
+                    <td>Jueves</td>
+                    <td>Viernes</td>
+                    <td>Sábado</td>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        <hr>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <%= info.DOM || '---' %>
+                    </td>
+                    <td>
+                        <%= info.LUN || '---' %>
+                    </td>
+                    <td>
+                        <%= info.MAR || '---' %>
+                    </td>
+                    <td>
+                        <%= info.MIE || '---' %>
+                    </td>
+                    <td>
+                        <%= info.JUE || '---' %>
+                    </td>
+                    <td>
+                        <%= info.VIE || '---' %>
+                    </td>
+                    <td>
+                        <%= info.SAB || '---' %>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div style="padding: 1rem;">
+        <p>
+            <i>
+                <strong>Nota:</strong>
+                De acuerdo a políticas institucionales, el CIC (Centro de Idiomas Continental) se
+                reserva la potestad de cancelar un ciclo que no cuente con el número mínimo de 28 estudiantes.
+            </i>
+        </p>
+        El examen final será el último día de clase. La asistencia de todos los estudiantes es obligatoria.
+    </div>
+
+    <div style="padding: 1rem;">
+        <hr>
+    </div>
+
+    <div style="text-align: center; text-transform: uppercase; font-size: 1.5rem; padding: 1rem 0;">
+        <strong>
+            Cronograma de matrículas
+        </strong>
+    </div>
+
+    <div style="padding: 0 1rem;">
+        Se les recuerda a todos los estudiantes del curso de Inglés con fecha de inicio: 28-04-2022, lo siguiente.
+    </div>
+
+    <div style="padding-top: 1rem;">
+        <table class="tbl1" style="margin: 0 auto;">
+            <thead>
+                <tr>
+                    <th>DESCRIPCIÓN</th>
+                    <th>FECHAS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2">
+                        <hr>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Matrículas regulares</td>
+                    <td>
+                        Hasta el <%= info.regularEnrollmentDate %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Prórroga de pago</td>
+                    <td>
+                        Hasta el <%= info.paymentExtensionDate %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Presentación de solicitud de prórroga</td>
+                    <td>
+                        Hasta el <%= info.submissionRequestDate %>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div style="padding: .5rem 1rem;">
+        <p>
+            <i>
+                <strong>Nota:</strong>
+                Revise en las vitrinas del CIC y módulos los horarios de atención de caja.
+            </i>
+        </p>
+    </div>
+
+
+</body>
+
+</html>
