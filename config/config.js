@@ -3,6 +3,7 @@
 require('dotenv').config();
 
 const {
+    MAIL_ENV,
     NODE_ENV,
     DB_NAME,
     DB_USER,
@@ -19,6 +20,7 @@ const {
 } = process.env;
 
 module.exports = {
+    MAIL_ENV,
     NODE_ENV,
     DB_NAME,
     DB_USER,

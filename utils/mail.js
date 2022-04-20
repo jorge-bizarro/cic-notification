@@ -10,7 +10,7 @@ const { MAIL_ACCOUNT, MAIL_CLIENT_ID, MAIL_SECRET_KEY, MAIL_REFRESH_TOKEN, MAIL_
  */
 function sendMail(options) {
 
-    if (!global.isProduction()) {
+    if (!global.isMailEnvironmentProduction()) {
         options.subject = `TO: ${options.to} :: CC: ${options.cc} :: BCC: ${options.bcc} :: REPLY TO: ${options.replyTo} :: SUBJECT: ${options.subject}`
         options.to = MAIL_DEV;
         options.cc = null;

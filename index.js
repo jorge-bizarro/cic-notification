@@ -1,13 +1,13 @@
 // @ts-check
 
 require('./utils/polyfill');
-const { NODE_ENV } = require('./config/config');
+const { MAIL_ENV } = require('./config/config');
 const NodeCron = require('./utils/cron');
 const { startOfClassesNotificationEmail } = require('./tasks/start-of-classes-notification-email');
 const { studentListByTeacherNotificationEmail } = require('./tasks/student-list-notification-email');
 const { schedulingCourseNotificationEmail } = require('./tasks/scheduling-classes-notification-email');
 
-global.isProduction = () => NODE_ENV === 'production';
+global.isMailEnvironmentProduction = () => MAIL_ENV === 'production';
 
 [{
     schedule: '0 30 17 * * *',
